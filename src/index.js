@@ -4,6 +4,7 @@ import './index.css';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
+// 여기서 app 컴포넌트를 index.html에 id=root에 렌더
 ReactDOM.render(
   <React.StrictMode>
     <App />
