@@ -1,0 +1,7 @@
+{
+    "host":"customermanagement.cjynl1msmhzu.us-east-1.rds.amazonaws.com",
+    "user": "admin",
+    "password": "1127521rnrwlsr!R",
+    "prot": "3306",
+    "database": "management"
+}

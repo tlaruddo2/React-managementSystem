@@ -11,7 +11,7 @@ import { Paper } from '@material-ui/core';  //wrap outside of components
 import { CircularProgress } from '@material-ui/core';
 
 const styles =  theme => ({
-  //findout how to use theme here?
+  // findout how to use theme here?
   root:{
     width: '100%',
     // marginTop: theme.spacing.unit *3, 
