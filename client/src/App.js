@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import Customer from './components/Customer';
+import CustomerAdd from './components/CustomerAdd';
 import { Table } from '@material-ui/core';
 import { TableHead } from '@material-ui/core';
 import { TableBody } from '@material-ui/core';
@@ -57,30 +58,34 @@ class App extends Component {
     //여기서 왜 이렇게 props를 ?
     const{classes} = this.props
     return (
-      <Paper className={classes.root}>
-        <Table className={classes.table}>
-          <TableHead>
-            <TableRow>
-              <TableCell>No.</TableCell>
-              <TableCell>Photo</TableCell>
-              <TableCell>Name</TableCell>
-              <TableCell>Birthday</TableCell>
-              <TableCell>Gender</TableCell>
-              <TableCell>Job</TableCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            {this.state.customers ? this.state.customers.map( c => { return ( <Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender}job={c.job}/>);})
-            :
-            <TableRow>
-              <TableCell colSpan = "6" align="center">
-                <CircularProgress className= {classes.progress}/>
-              </TableCell>
-            </TableRow>
-            }
-          </TableBody>
-        </Table>
-      </Paper>
+      <div>
+          <Paper className={classes.root}>
+          <Table className={classes.table}>
+            <TableHead>
+              <TableRow>
+                <TableCell>No.</TableCell>
+                <TableCell>Photo</TableCell>
+                <TableCell>Name</TableCell>
+                <TableCell>Birthday</TableCell>
+                <TableCell>Gender</TableCell>
+                <TableCell>Job</TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              {this.state.customers ? this.state.customers.map( c => { return ( <Customer key={c.id} id={c.id} image={c.image} name={c.name} birthday={c.birthday} gender={c.gender}job={c.job}/>);})
+              :
+              <TableRow>
+                <TableCell colSpan = "6" align="center">
+                  <CircularProgress className= {classes.progress}/>
+                </TableCell>
+              </TableRow>
+              }
+            </TableBody>
+          </Table>
+        </Paper>
+        <CustomerAdd/>
+      </div>
+      
       
     );
   }
