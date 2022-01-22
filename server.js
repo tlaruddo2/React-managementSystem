@@ -9,7 +9,7 @@ app.use(bodyParser.urlencoded({extended : true}));
 
 //database 접근 
 //파일 접근
-const data = fs.readFile("./database.json");
+const data = fs.readFileSync("./database.json");
 // 파일 내 데이터 parshing
 const conf = JSON.parse(data);
 const mysql = require('mysql');
@@ -17,10 +17,10 @@ const mysql = require('mysql');
 //mysql연결하고 연결객체를 이용할수 있게 한다
 //정보는 파일로부터 읽어온다
 const connection = mysql.createConnection({
-    host:conf.host,
-    user:conf,user,
-    passworkd:conf.password,
-    prot: conf.port,
+    host : conf.host,
+    user : conf.user,
+    password:conf.password,
+    port: conf.port,
     database:conf.database
 });
 connection.connect();
