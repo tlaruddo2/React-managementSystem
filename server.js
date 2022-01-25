@@ -25,6 +25,13 @@ const connection = mysql.createConnection({
 });
 connection.connect();
 
+//library fo fandle upload file 
+const multer = require('multer');
+const { CLIENT_SECURE_CONNECTION } = require('mysql/lib/protocol/constants/client');
+//set up upload folder 
+const upload = multer({dest: './upload'});
+
+
 
 
 app.get('/api/customers', (req,res) => {
@@ -40,6 +47,31 @@ app.get('/api/customers', (req,res) => {
     );
 });
 
+//user come through iamage folder to check image file which is 
+//same folder we hace in directory, called 'upload'
+app.use('/iamge', express.static('./upload'));
+
+//handle when customer send additional customer data in webpage (api/cusotmers/)
+app.post('/api/customers', upload.single('image'), (req,res) => {
+    let sql = "INSERT INTO CUSTOMER VALUES (null, ?, ?, ?, ?, ?)";
+    let image = '/image/' + req.file.filename;  //multer library make filename
+    let name = req.body.name;
+    let birthday = req.body.birthday;
+    let gender = req.body.gender;
+    let job = req.body.job;
+    // console.log(name); debudgging
+    // console.log(image);
+    // console.log(birthday);
+    // console.log(gender);
+    // console.log(job);
+    let params = [image, name, birthday, gender, job];
+    connection.query(sql, params,
+        (err, rows, fileds) => {
+            res.send(rows);
+            // console.log(err);
+            // console.log(rows);
+        });
+})
 
 app.listen(port, () => console.log(`listening on port ${port}`));
 

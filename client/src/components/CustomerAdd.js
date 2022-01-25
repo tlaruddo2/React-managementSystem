@@ -22,9 +22,18 @@ class CustomerAdd extends Component {
         e.preventDefault()
         this.addCustomer()
         //서버로 부터 리스폰 왓을때 결과 넘겨오는 것
-            .then( (resonse) =>{
-                console.log(resonse.data);
+            .then( (response) =>{
+                console.log(response.data);
             })
+        this.setState({
+            file: null,
+            userName: '',
+            birthday: '',
+            job: '',
+            gender: '',
+            filename:''
+        })
+        window.location.reload();
     }
 
     handleFileChange = (e) => {
@@ -32,8 +41,8 @@ class CustomerAdd extends Component {
             //e.tager : 이벤트가 발생한 이벤트값 자체 
             // files[0] 하는 이유는 몇몇사이트는 여러 파일 올려주게 하는데 우리는 첫번쨰 , 하나의 파일만 선택
             file: e.target.files[0],
-            filename: e.target.value
-        })
+            filename: e.target.value,
+        });
     }
 
     handleValueChange = (e) =>{
@@ -43,13 +52,13 @@ class CustomerAdd extends Component {
     }
 
     addCustomer = () => { 
-        const url = '/api/cusoers';
+        const url = '/api/customers';
         //formData라는 객체를 이용해서 데이터를 서버로 보낸다 
         const formData = new FormData();
         formData.append('image', this.state.file);
         formData.append('name', this.state.userName);
         formData.append('birthday', this.state.birthday);
-        formData.append('gender', this.state.gernder);
+        formData.append('gender', this.state.gender);
         formData.append('job', this.state.job);
         //데이터에 파일이 포함되어 있을떄는 html양식의 헤더를 추가한다 
         const config = {
@@ -72,7 +81,7 @@ class CustomerAdd extends Component {
             <form onSubmit={this.handleFormSubmit}>
                 <h1>Add customer</h1>
                 {/* type: 인풋양식 name: 서버로 전달되는 인풋 변수 명, file : 파일 , value: 값 , onchange: 사용자가 값 입력시 이벤트 처리하는 함수 불러오기 */}
-                Profile image : <input type = "file" name = "file" file = {this.state.file} value={this.state.fileName} onChange={this.handleFileChange} / ><br/>
+                Profile image : <input type = "file" name = "file" file = {this.state.file} value={this.state.fileName} multiple onChange={this.handleFileChange} / ><br/>
                 Name : <input type = "text" name = "userName" value={this.state.userName} onChange={this.handleValueChange} / ><br/>
                 birthday : <input type = "text" name = "birthday" value={this.state.birthday} onChange={this.handleValueChange} / ><br/>
                 Gender : <input type = "text" name = "gender" value={this.state.gender} onChange={this.handleValueChange} / ><br/>
