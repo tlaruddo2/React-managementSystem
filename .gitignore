@@ -4,7 +4,7 @@
 /upload
 
 #database
-/database.josn
+/database.json
 
 # dependencies
 /node_modules

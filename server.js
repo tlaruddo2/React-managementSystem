@@ -49,7 +49,7 @@ app.get('/api/customers', (req,res) => {
 
 //user come through iamage folder to check image file which is 
 //same folder we hace in directory, called 'upload'
-app.use('/iamge', express.static('./upload'));
+app.use('/image', express.static('./upload'));
 
 //handle when customer send additional customer data in webpage (api/cusotmers/)
 app.post('/api/customers', upload.single('image'), (req,res) => {
@@ -71,7 +71,7 @@ app.post('/api/customers', upload.single('image'), (req,res) => {
             // console.log(err);
             // console.log(rows);
         });
-})
+});
 
 app.listen(port, () => console.log(`listening on port ${port}`));
 

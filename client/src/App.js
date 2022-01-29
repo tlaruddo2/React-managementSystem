@@ -36,7 +36,7 @@ class App extends Component {
 
   componentDidMount(){
     //0.02초마다 프로그레스바 실행
-    this.timer = setInterval(this.progrss,20);
+    this.timer = setInterval(this.progress,20);
     this.callApi()
       .then(res => this.setState({customers:res}))
       .catch(err => console.log(err)); 
@@ -55,7 +55,6 @@ class App extends Component {
   }
 
   render() { 
-    //여기서 왜 이렇게 props를 ?
     const{classes} = this.props
     return (
       <div>
