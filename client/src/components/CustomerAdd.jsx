@@ -19,6 +19,11 @@ class CustomerAdd extends Component {
     e.preventDefault();
     this.addCustomer().then((response) => {
       console.log(response.data);
+      //call function from props
+      //this function have to be called after getting response for adding customers
+      this.props.stateRefresh();
+      //this way is not efficient as well
+      //in real project, call recent 10 customer and there other is recalled when we scroll
     });
     this.setState({
       file: null,
@@ -28,7 +33,6 @@ class CustomerAdd extends Component {
       gender: "",
       filename: "",
     });
-    window.location.reload();
   };
 
   handleFileChange = (e) => {

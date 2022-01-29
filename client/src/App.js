@@ -29,13 +29,28 @@ const styles =  theme => ({
 
 
 class App extends Component {
-  state = {
-    customers:"",
-    completed:0 //progress바
+  constructor(props){
+    super(props);
+    this.state = {
+      customers : '',
+      completed:0
+    }
+  }
+
+  //this function is called from customerAdd component 
+  //which referesh only table, not whole page
+  //pass this function to customerAdd component as props
+  stateRefresh = () => {
+    this.setState({
+      customers: '',
+      completed:0
+    });
+    this.callApi()
+      .then(res => this.setState({customers:res}))
+      .catch(err => console.log(err)); 
   }
 
   componentDidMount(){
-    //0.02초마다 프로그레스바 실행
     this.timer = setInterval(this.progress,20);
     this.callApi()
       .then(res => this.setState({customers:res}))
@@ -82,7 +97,7 @@ class App extends Component {
             </TableBody>
           </Table>
         </Paper>
-        <CustomerAdd/>
+        <CustomerAdd stateRefresh={this.stateRefresh}/>
       </div>
       
       

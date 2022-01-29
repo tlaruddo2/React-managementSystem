@@ -35,12 +35,9 @@ const upload = multer({dest: './upload'});
 
 
 app.get('/api/customers', (req,res) => {
-    //이 페이지에 접근시 쿼리를 날리게 한다
     connection.query(
         "SELECT * FROM CUSTOMER",
-        //가져온 데이터는 rows로 처리
         (err, rows, fields) =>{
-            //row를 사용자에게 다시 날려준다
             res.send(rows);
         }
 
