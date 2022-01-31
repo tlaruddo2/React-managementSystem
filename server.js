@@ -1,4 +1,4 @@
-const fs = require('fs'); //파일에 접근할 수 있는 라이브러리 
+const fs = require('fs');
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
@@ -7,10 +7,7 @@ const port = process.env.PORT || 5000;
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({extended : true}));
 
-//database 접근 
-//파일 접근
 const data = fs.readFileSync("./database.json");
-// 파일 내 데이터 parshing
 const conf = JSON.parse(data);
 const mysql = require('mysql');
 
